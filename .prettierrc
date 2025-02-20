@@ -1,0 +1,13 @@
+{
+  "singleQuote": true,
+  "semi": true,
+  "plugins": ["prettier-plugin-prisma"],
+  "overrides": [
+    {
+      "files": "*.prisma",
+      "options": {
+        "parser": "prisma-parse"
+      }
+    }
+  ]
+}
