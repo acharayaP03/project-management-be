@@ -14,7 +14,7 @@ CREATE TABLE "Team" (
     "id" SERIAL NOT NULL,
     "teamName" TEXT NOT NULL,
     "productOwnerUserId" INTEGER,
-    "projectMangerUserId" INTEGER,
+    "projectManagerUserId" INTEGER,
 
     CONSTRAINT "Team_pkey" PRIMARY KEY ("id")
 );
