@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -20,21 +21,21 @@ model User {
   profilePictureUrl String?
   teamId            Int?
 
-  authoredTasks Task[]           @relation("TaskAuthor")
-  assignedTasks Task[]           @relation("TaskAssignee")
-  taskAssigment TaskAssignment[]
-  attachments   Attachment[]
-  comments      Comment[]
-  team          Team?            @relation(fields: [teamId], references: [id])
+  authoredTasks   Task[]           @relation("TaskAuthor")
+  assignedTasks   Task[]           @relation("TaskAssignee")
+  taskAssignments TaskAssignment[]
+  attachments     Attachment[]
+  comments        Comment[]
+  team            Team?            @relation(fields: [teamId], references: [id])
 }
 
 model Team {
-  id                  Int           @id @default(autoincrement())
-  teamName            String
-  productOwnerUserId  Int?
-  projectMangerUserId Int?
-  projectTeams        ProjectTeam[]
-  user                User[]
+  id                   Int           @id @default(autoincrement())
+  teamName             String
+  productOwnerUserId   Int?
+  projectManagerUserId Int?
+  projectTeams         ProjectTeam[]
+  user                 User[]
 }
 
 model Project {
@@ -43,7 +44,7 @@ model Project {
   description  String?
   startDate    DateTime?
   endDate      DateTime?
-  task         Task[]
+  tasks        Task[]
   projectTeams ProjectTeam[]
 }
 
