@@ -56,7 +56,7 @@
 // main()
 //   .catch((e) => console.error(e))
 //   .finally(async () => await prisma.$disconnect());
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, User } from '@prisma/client';
 import fs from 'fs';
 import path from 'path';
 
@@ -90,7 +90,7 @@ async function seedWithValidation() {
     const userData = JSON.parse(
       fs.readFileSync(path.join(__dirname, 'seedData', 'user.json'), 'utf-8'),
     );
-    const createdUsers = [];
+    const createdUsers: User[] = [];
     for (const user of userData) {
       const createdUser = await prisma.user.create({
         data: user,

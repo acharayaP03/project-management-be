@@ -1,10 +1,13 @@
 {
   "verbose": true,
-  "ignore": ["*.test.js", "node_modules", "prisma"],
+  "ignore": ["node_modules", "prisma"],
   "watch": ["dist"],
-  "ext": "js",
-  "exec": "node dist/server.js",
+  "ext": "ts,json",
   "env": {
     "NODE_NO_WARNINGS": "1"
+  },
+  "exec": "node --loader ts-node/esm ./src/server.ts",
+  "execMap": {
+    "ts": "ts-node"
   }
 }
