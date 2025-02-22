@@ -1,0 +1,10 @@
+{
+  "verbose": true,
+  "ignore": ["*.test.js", "node_modules", "prisma"],
+  "watch": ["dist"],
+  "ext": "js",
+  "exec": "node dist/server.js",
+  "env": {
+    "NODE_NO_WARNINGS": "1"
+  }
+}
