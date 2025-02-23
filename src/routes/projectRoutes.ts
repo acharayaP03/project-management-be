@@ -1,12 +1,10 @@
 import { Router } from 'express';
-import {
-  getProjects,
-  createProject,
-} from '../controllers/projectController.js';
+import { asyncHandler } from '../utils/errorHandlers';
+import { getProjects, createProject } from '../controllers/projectController';
 
 const router = Router();
 
-router.get('/', getProjects);
-router.post('/', createProject);
+router.get('/', asyncHandler(getProjects));
+router.post('/', asyncHandler(createProject));
 
 export default router;
