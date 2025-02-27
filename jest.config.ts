@@ -1,6 +1,5 @@
-import type { JestConfigWithTsJest } from 'ts-jest';
-
-const config: JestConfigWithTsJest = {
+/** @type {import('ts-jest').JestConfigWithTsJest} */
+module.exports = {
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
   roots: ['<rootDir>/tests/'],
@@ -23,6 +22,10 @@ const config: JestConfigWithTsJest = {
   globalTeardown: './tests/teardown.ts',
   setupFilesAfterEnv: ['./tests/jest.setup.ts'],
   collectCoverage: true,
-};
 
-export default config;
+  // Add moduleNameMapper to help Jest resolve imports
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+    '^(\\.{1,2}/.*)\\.ts$': '$1',
+  },
+};

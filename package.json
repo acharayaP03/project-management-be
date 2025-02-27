@@ -7,8 +7,8 @@
     "seed": "ts-node prisma/seed.ts",
     "build": "rimraf dist && npx tsc",
     "start": "npm run build && node dist/server.js",
-    "dev": "npm run build && concurrently \"tsc -w\" \"nodemon\"",
-    "test": "cross-env NODE_ENV=test node --no-warnings --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "dev": "npm run build && concurrently \"tsc -w\" \"nodemon dist/src/server.js\"",
+    "test": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --no-warnings\" jest",
     "test:watch": "cross-env NODE_ENV=test node --no-warnings  --experimental-vm-modules --loader ts-node/esm node_modules/jest/bin/jest.js --watch",
     "test:coverage": "cross-env NODE_ENV=test node --no-warnings  --experimental-vm-modules --loader ts-node/esm node_modules/jest/bin/jest.js --coverage"
   },
@@ -45,6 +45,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "helmet": "^8.0.0",
+    "http-status-codes": "^2.3.0",
     "morgan": "^1.10.0",
     "prisma": "^6.4.0"
   }

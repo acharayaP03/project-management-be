@@ -1,32 +1,19 @@
 {
-  "$schema": "https://json.schemastore.org/tsconfig",
-  "version": "20.1.0",
   "compilerOptions": {
-    "lib": ["es2023"],
-    "target": "ESNext" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
-    "module": "ESNext" /* Specify what module code is generated. */ /* Specify the root folder within your source files. */,
-    "moduleResolution": "node" /* Specify how TypeScript looks up a file from a given module specifier. */,
-    "resolveJsonModule": true /* Enable importing .json files. */,
-    "outDir": "./dist" /* Specify an output folder for all emitted files. */,
-    "rootDir": "./src" /* Specify the root folder within your source files. */,
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "resolveJsonModule": true,
+    "outDir": "./dist",
     "esModuleInterop": true,
-    "sourceMap": true /* Generates corresponding .map file. */,
-    "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true /* Raise error on expressions and declarations with an implied 'any' type. */,
-    "strictNullChecks": true /* Enable strict null checks. */,
     "forceConsistentCasingInFileNames": true,
-    "types": [
-      "jest",
-      "node"
-    ] /* Specify type definition files to be included in compilation. */
+    "strict": true,
+    "skipLibCheck": true
   },
-  "include": [
-    "src/**/*",
-    "src/data/**/*.json"
-  ] /* Specify the root folder within your source files. */,
-  "exclude": [
-    "node_modules",
-    "prisma",
-    "tests"
-  ] /* Exclude files from compilation. */
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
+  "include": ["src/**/*", "src/data/**/*.json", "prisma/**/*"],
+  "exclude": ["node_modules", "tests/**/*"]
 }
