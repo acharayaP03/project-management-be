@@ -1,7 +1,6 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { PrismaClient } from '@prisma/client';
-// import { APIError } from '../../src/utils/errorHandlers';
 import { createProject } from '../../src/controllers/projectController';
 import { jest } from '@jest/globals';
 
@@ -13,9 +12,17 @@ jest.mock('@prisma/client', () => ({
   }),
 }));
 
+// Create a helper function to properly type the mocks
+function createMockResponse() {
+  const res: Partial<Response> = {};
+  res.status = jest.fn().mockReturnValue(res) as unknown as Response['status'];
+  res.json = jest.fn().mockReturnValue(res) as unknown as Response['json'];
+  return res as Response;
+}
+
 describe('Controller: createProject', () => {
   let mockRequest: Partial<Request>;
-  let mockResponse: Partial<Response>;
+  let mockResponse: Response;
   let prisma: jest.Mocked<PrismaClient>;
 
   beforeEach(() => {
@@ -28,22 +35,25 @@ describe('Controller: createProject', () => {
       },
     };
 
-    mockResponse = {
-      status: jest.fn().mockReturnThis(),
-      json: jest.fn(),
-    };
-
+    mockResponse = createMockResponse();
     prisma = new PrismaClient() as jest.Mocked<PrismaClient>;
   });
 
   it('should create a project successfully', async () => {
+    // Define the expected project with explicit typing
     const expectedProject = {
       id: 1,
-      ...mockRequest.body,
-    };
+      name: mockRequest.body.name,
+      description: mockRequest.body.description,
+      startDate: mockRequest.body.startDate,
+      endDate: mockRequest.body.endDate,
+      // Add any other fields that your Project type requires
+    }; // Cast to your Prisma Project type
 
-    (prisma.project.create as jest.Mock).mockResolvedValueOnce(expectedProject);
-    await createProject(mockRequest as Request, mockResponse as Response);
+    // Mock the create function's return value
+    prisma.project.create.mockResolvedValue(expectedProject);
+
+    await createProject(mockRequest as Request, mockResponse);
 
     expect(prisma.project.create).toHaveBeenCalledWith({
       data: {

@@ -1,6 +1,9 @@
 import { Router } from 'express';
-import { asyncHandler } from '../utils/errorHandlers';
-import { getProjects, createProject } from '../controllers/projectController';
+import { asyncHandler } from '../utils/errorHandlers.js';
+import {
+  getProjects,
+  createProject,
+} from '../controllers/projectController.js';
 
 const router = Router();
 

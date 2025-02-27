@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { PrismaClient } from '@prisma/client';
-import { APIError } from '../utils/errorHandlers';
+import { APIError } from '../utils/errorHandlers.js';
 
 const prisma = new PrismaClient();
 

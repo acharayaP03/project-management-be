@@ -1,19 +1,15 @@
-import { jest } from '@jest/globals';
+const originalConsoleError = console.error;
+console.error = (...args) => {
+  if (
+    typeof args[0] === 'string' &&
+    (args[0].includes('ExperimentalWarning') ||
+      args[0].includes('--experimental-vm-modules'))
+  ) {
+    return;
+  }
+  originalConsoleError(...args);
+};
 
-beforeAll(() => {
-  // Global setup code
-});
-
-afterEach(() => {
-  // Clear all mocks and timers after each test
-  jest.clearAllMocks();
-  jest.clearAllTimers();
-});
-
-afterAll(() => {
-  // Clean up after all tests in a file
-  jest.clearAllMocks();
-  jest.clearAllTimers();
-  jest.restoreAllMocks();
-  jest.resetModules();
-});
+// Set a longer timeout for tests if needed
+// jest.setTimeout(30000);
+//

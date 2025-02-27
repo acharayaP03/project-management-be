@@ -4,8 +4,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import projectRoutes from './routes/projectRoutes';
-import { errorHandler } from './utils/errorHandlers';
+import projectRoutes from './routes/projectRoutes.js';
+import { errorHandler } from './utils/errorHandlers.js';
 
 dotenv.config(); // Load environment variables from .env file
 
