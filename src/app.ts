@@ -4,7 +4,9 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+
 import projectRoutes from './routes/projectRoutes.js';
+import taskRoutes from './routes/taskRoutes.js';
 import { errorHandler } from './utils/errorHandlers.js';
 
 dotenv.config(); // Load environment variables from .env file
@@ -25,6 +27,7 @@ app.get('/', (request, response) => {
   response.send('Home route response from server');
 });
 app.use('/projects', projectRoutes);
+app.use('/tasks', taskRoutes);
 app.use(errorHandler);
 
 export { app };
